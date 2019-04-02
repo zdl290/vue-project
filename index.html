@@ -8,29 +8,53 @@
 </head>
 <body>
     <div id="warp">
+        {{ message }}
+        {{ twoMessage }}
         <!-- 组件 -->
-        <my-header></my-header>
+        <my-header
+            :todo="message"
+            :children-message="twoMessage"
+        >
+
+        </my-header>
     </div>
 </body>
 <script src="./js/vue.js"></script>
 <script type="text/javascript">
  Vue.component ("my-header", {
             name : "my-header",
-            template : 
-                        `<div class="my-header">
+            template : `
+                        <div class="my-header">
                             <div class="my-header-left">
-                                <a href="#">登录</a>
+                                <a href="#" @click="handleLogin">登录</a>
                                 <a href="#">注册</a>
                             </div>
                             <div class="my-header-rigth">
                                 <a href="#">我的</a>
                                 <a href="#">查看</a>
                             </div>
-                        </div>`,
+                            <div class="my-header-props">
+                                {{ todo }} {{ childrenMessage }}
+                            </div>
+                        </div>
+                        `,
+            methods: {
+                handleLogin: function () {
+                    console.log(this)
+                }
+            },
+            props: [ "todo", "childrenMessage" ],
                         
         })
     var vm = new Vue({
         el : "#warp",
+        data: function () {
+           return {
+               message : "我是warpOne",
+               twoMessage: "我是warpTwo"
+
+           }
+        }
 
     })
    
