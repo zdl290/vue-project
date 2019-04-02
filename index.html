@@ -9,7 +9,15 @@
 <body>
     <div id="warp">
         {{ message }}
-        {{ twoMessage }}
+        <div>
+            {{ twoMessage }}
+        </div>
+        <div v-if="flag">
+            我是隐藏
+        </div>
+        <div @click="handleButton">
+            我是事件监听
+        </div>
         <!-- 组件 -->
         <my-header
             :todo="message"
@@ -43,7 +51,16 @@
                     console.log(this)
                 }
             },
-            props: [ "todo", "childrenMessage" ],
+            props: {
+                todo: {
+                    type: String,
+                    default: "",
+                },
+                childrenMessage: {
+                    type: Number,
+                    default: 0,
+                }
+            }
                         
         })
     var vm = new Vue({
@@ -51,9 +68,20 @@
         data: function () {
            return {
                message : "我是warpOne",
-               twoMessage: "我是warpTwo"
+               twoMessage: 1,
+               flag: false
 
            }
+        },
+        methods: {
+            handleButton: function () {
+                this.flag = !this.flag //点击显示再点击隐藏
+            }
+        },
+        watch: {
+            flag: function (oldValue, newValue) {
+                console.log(oldValue,"旧值",newValue,"新值")
+            }
         }
 
     })
