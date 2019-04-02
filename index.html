@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="warp">
+        <!-- 组件 -->
+        <my-header></my-header>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+ Vue.component ("my-header", {
+            name : "my-header",
+            template : 
+                        `<div class="my-header">
+                            <div class="my-header-left">
+                                <a href="#">登录</a>
+                                <a href="#">注册</a>
+                            </div>
+                            <div class="my-header-rigth">
+                                <a href="#">我的</a>
+                                <a href="#">查看</a>
+                            </div>
+                        </div>`,
+                        
+        })
+    var vm = new Vue({
+        el : "#warp",
+
+    })
+   
+</script>
+</html>
